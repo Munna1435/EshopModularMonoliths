@@ -1,3 +1,4 @@
+# use this command to generate the password hash for SEQ_FIRSTRUN_ADMINPASSWORDHASH: echo 'Admin@1435' | docker run --rm -i datalust/seq config hash
 services:
   eshopdb:
     container_name: eshopdb
@@ -10,3 +11,13 @@ services:
       - "5432:5432"
     volumes:
       - postgres_eshopdb:/var/lib/postgresql/data/    
+
+  seq:
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_ADMINPASSWORDHASH=QPzgOKJGUY8cYZvG69S/PRM+SeakZnAaHE/A3kzbir3dMA6Cjo3Ln24zs9cScKPv5r+NQ0IxfHFoj41bWReoDIxTER9mV44iQlHSVaQr0gNJ
+    restart: always
+    ports:
+      - "5341:5341"
+      - "9091:80"
